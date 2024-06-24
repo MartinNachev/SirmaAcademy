@@ -4,21 +4,27 @@ import interfaces.*;
 
 public abstract class AbstractItem implements Item, Categorizable, Breakable, Perishable, Sellable {
 
+    private String product;
     private String category;
     private boolean breakable;
-    private String description;
     private boolean perishable;
     private double price;
+    private String description;
 
-    protected AbstractItem(String category, boolean breakable, String description, boolean perishable, double price) {
+    protected  StringBuilder details;
+
+    protected AbstractItem(String product, String category, boolean breakable, boolean perishable,
+                           double price,String description) {
+        this.product = product;
         this.category = category;
         this.breakable = breakable;
-        this.description = description;
         this.perishable = perishable;
+        this.description = description;
         this.setPrice(price);
     }
 
-    public void setBreakable(boolean breakable){
+
+    protected void setBreakable(boolean breakable){
         this.breakable = breakable;
     }
     @Override
@@ -39,15 +45,6 @@ public abstract class AbstractItem implements Item, Categorizable, Breakable, Pe
     @Override
     public String getCategory() {
         return category;
-    }
-
-    @Override
-    public double calculateValue() {
-        return 0;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override
@@ -80,5 +77,17 @@ public abstract class AbstractItem implements Item, Categorizable, Breakable, Pe
             throw new IllegalArgumentException("Price can not be zero or negative!");
         }
         this.price = price;
+    }
+
+    public String getItemDetails(){
+        details = new StringBuilder();
+        details.append("product: ").append(product).append("\n")
+                .append("category: ").append(category).append("\n")
+                .append("fragile: ").append(breakable).append("\n")
+                .append("perishable: ").append(perishable).append("\n")
+                .append("price: ").append(price).append("\n")
+                .append("description: ").append(description).append("\n");
+
+          return details.toString();
     }
 }

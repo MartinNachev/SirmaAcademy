@@ -1,14 +1,16 @@
 package ItemTypes;
 
 public class InventoryItem extends AbstractItem {
-    private int id;
-    private int quantity;
-    protected final StringBuilder details = new StringBuilder();
 
-    public InventoryItem(String category,boolean breakable, String description,
-                         boolean perishable,double price,int id, int quantity){
-        super(category, breakable, description, perishable, price);
-        setId(id);
+    private static int idGenerator = 1;
+    private final int id;
+    private int quantity;
+
+    public InventoryItem(String product, String category, boolean breakable,
+                         boolean perishable, double price,String description, int quantity) {
+        super(product, category, breakable, perishable, price, description);
+        id = idGenerator;
+        idGenerator++;
         setQuantity(quantity);
     }
 
@@ -16,19 +18,12 @@ public class InventoryItem extends AbstractItem {
         return id;
     }
 
-    public void setId(int id) {
-        if (id<=0){
-            throw new IllegalArgumentException("id can not be zero or negative");
-        }
-        this.id = id;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        if (quantity<0){
+    private void setQuantity(int quantity) {
+        if (quantity < 0) {
             throw new IllegalArgumentException("Quantity can not be zero");
         }
         this.quantity = quantity;
@@ -36,12 +31,14 @@ public class InventoryItem extends AbstractItem {
 
     @Override
     public String getItemDetails() {
-        details.append("id: ").append(id).append("\n")
-                .append("quantity: ").append(quantity).append("\n")
-                .append("price: ").append(getPrice()).append("\n")
-                .append("category: ").append(getCategory()).append("\n")
-                .append("fragile: ").append(isBreakable()).append("\n")
-                .append("perishable: ").append(isPerishable()).append("\n");
+        super.getItemDetails();
+        details.append("product id: ").append(id).append("\n");
+        details.append("quantity: ").append(quantity).append("\n");
         return details.toString();
+    }
+
+    @Override
+    public double calculateValue() {
+        return this.getQuantity()*this.getPrice();
     }
 }

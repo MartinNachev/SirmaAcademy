@@ -1,19 +1,24 @@
 package ItemTypes;
 public class ElectronicsItem extends InventoryItem {
-
-    private String productType;
+    public static final boolean PERISHABLE = false;
+    public static final boolean BREAKABLE = true;
     private String brand;
     private String model;
 
-    public ElectronicsItem(String category, boolean breakable, String description,
-                           boolean perishable, double price, int id, int quantity) {
-        super(category, breakable, description, perishable, price, id, quantity);
+    public ElectronicsItem(String product, String category,
+                           double price,String description, int quantity, String brand,String model) {
+
+        super(product,category, BREAKABLE, PERISHABLE, price,description, quantity);
+        this.brand = brand;
+        this.model = model;
+
     }
 
     @Override
     public String getItemDetails() {
-        return super.getItemDetails() + details.append("product: ").append(productType).append("\n")
-                .append("brand: ").append(brand).append("\n")
+         super.getItemDetails();
+         details.append("brand: ").append(brand).append("\n")
                 .append("model: ").append(model).append("\n");
+         return  details.toString();
     }
 }
