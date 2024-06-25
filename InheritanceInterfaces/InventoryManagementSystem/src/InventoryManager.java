@@ -1,13 +1,6 @@
 import ItemTypes.InventoryItem;
 
-public class InventoryManager {
-    public InventoryManager(){
+import java.util.Map;
 
-    }
-    public void addItem(ItemRepository itemRepository, InventoryItem item){
-        itemRepository.getItemRepository().putIfAbsent(item.getId(), item);
-    }
-    public void removeItemById(ItemRepository itemRepository,int itemId){
-        itemRepository.getItemRepository().remove(itemId);
-    }
+public class InventoryManager {
 }

@@ -7,23 +7,6 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        UserInterface.displayOptions();
-        ItemRepository itemRepository = new ItemRepository();
-        InventoryManager inventoryManager = new InventoryManager();
-        int n = Integer.parseInt(scanner.nextLine());
-        while(n != 0){
-            if (n == 1){
-                System.out.println("Enter the category of the item: ");
-                UserInterface.displayExistingCategories();
-                InventoryItem item = createItem(scanner.nextLine(),scanner);
-                inventoryManager.addItem(itemRepository,item);
-            } else if (n == 2) {
-                UserInterface.displayItemId(itemRepository);
-                System.out.println("Select the id of the item you would like to remove: ");
-                inventoryManager.removeItemById(itemRepository, Integer.parseInt(scanner.nextLine()));
-            }
-            n = Integer.parseInt(scanner.nextLine());
-        }
 
 
     }
