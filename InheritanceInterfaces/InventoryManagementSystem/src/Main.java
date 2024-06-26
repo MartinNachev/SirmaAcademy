@@ -7,7 +7,27 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        UserInterface.displayOptions();
+        System.out.println("Choose an operation: ");
+        int input = Integer.parseInt(scanner.nextLine());
+        InventoryManager inventoryManager = new InventoryManager();
+        ItemRepository itemRepository = new ItemRepository();
+        while (input != 0){
 
+            switch (input){
+                case 1:
+                    System.out.println("Enter the category of the item listed below: ");
+                    UserInterface.listItemsCategories();
+                    String category = scanner.nextLine();
+                    InventoryItem newItem = createItem(category,scanner);
+                    inventoryManager.addItemToRepository(itemRepository,newItem);
+                    break;
+                case 2:
+            }
+            UserInterface.displayOptions();
+            System.out.println("Choose an operation: ");
+            input = Integer.parseInt(scanner.nextLine());
+        }
 
     }
     public static InventoryItem createItem(String category,Scanner sc){
