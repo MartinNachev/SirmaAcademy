@@ -13,16 +13,30 @@ public class Main {
         InventoryManager inventoryManager = new InventoryManager();
         ItemRepository itemRepository = new ItemRepository();
         while (input != 0){
-
+            String category;
             switch (input){
                 case 1:
                     System.out.println("Enter the category of the item listed below: ");
                     UserInterface.listItemsCategories();
-                    String category = scanner.nextLine();
+                    category = scanner.nextLine().toLowerCase();
                     InventoryItem newItem = createItem(category,scanner);
                     inventoryManager.addItemToRepository(itemRepository,newItem);
                     break;
                 case 2:
+                    System.out.println("Enter the id of the item to be removed: ");
+                    int id = Integer.parseInt(scanner.nextLine());
+                    inventoryManager.removeItemById(itemRepository,id);
+                    break;
+                case 3:
+                    inventoryManager.displayAllItems(itemRepository);
+                    break;
+                case 4:
+                    System.out.println("Enter category: ");
+                    category = scanner.nextLine().toLowerCase();
+                    inventoryManager.displayItemsByCategory(itemRepository, category);
+                    break;
+                case 5:
+
             }
             UserInterface.displayOptions();
             System.out.println("Choose an operation: ");

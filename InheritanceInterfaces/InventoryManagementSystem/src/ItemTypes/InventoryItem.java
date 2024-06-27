@@ -33,7 +33,7 @@ public class InventoryItem extends AbstractItem {
     public String getItemDetails() {
         super.getItemDetails();
         details.append("product id: ").append(id).append("\n");
-        details.append("quantity: ").append(quantity).append("\n");
+        details.append("quantity in stock: ").append(quantity).append("\n");
         return details.toString();
     }
 
